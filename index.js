@@ -1,4 +1,5 @@
 const amqp = require('amqplib/callback_api')
+const User = require('./models/user')
 
 amqp.connect('amqp://localhost:5672', function (err, conn) {
 
@@ -11,9 +12,12 @@ amqp.connect('amqp://localhost:5672', function (err, conn) {
             console.log(" [*] Waiting for messages in %s. To exit press CTRL+C", q.queue)
             ch.bindQueue(q.queue, ex, '')
 
-            ch.consume(q.queue, function (msg) {
+            ch.consume(q.queue, function async (msg) {
                 console.log(" [x] %s", msg.content.toString())
                 console.log(msg)
+
+                const user = await User.create(msg.content)
+
             }, { noAck: true })
         })
     })
