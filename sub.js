@@ -1,5 +1,4 @@
-var amqp = require('amqplib/callback_api')
-
+const amqp = require('amqplib/callback_api')
 
 amqp.connect('amqp://localhost:5672', function (err, conn) {
 
