@@ -1,8 +1,8 @@
 const amqp = require('amqplib/callback_api')
 const User = require('./models/user')
 
-amqp.connect('amqp://localhost:5672', function (err, conn) {
-// amqp.connect('amqp://xxypubma:Wn-dt1JagVPLaqaxRbz4Remvlf6acIeJ@llama.rmq.cloudamqp.com/xxypubma', function (err, conn) {
+// amqp.connect('amqp://localhost:5672', function (err, conn) {
+amqp.connect('amqp://xxypubma:Wn-dt1JagVPLaqaxRbz4Remvlf6acIeJ@llama.rmq.cloudamqp.com/xxypubma', function (err, conn) {
 
     conn.createChannel(function (err, ch) {
         var ex = 'pub_sub_meetup28'
