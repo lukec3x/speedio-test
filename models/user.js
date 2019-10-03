@@ -4,7 +4,7 @@ mongoose.connect('mongodb://localhost/speedio-test', {useNewUrlParser: true, use
     console.log(`Erro na conexão com o MongoDB \n\n${err}`)
 }) 
 
-mongoose.Promise = global.Promise
+// mongoose.Promise = global.Promise
 
 const UserSchema = new mongoose.Schema({
     name: {
