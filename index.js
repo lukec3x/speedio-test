@@ -1,8 +1,8 @@
 const amqp = require('amqplib/callback_api')
 const User = require('./models/user')
 
-// amqp.connect('amqp://localhost:5672', function (err, conn) {
-amqp.connect('amqp://xxypubma:Wn-dt1JagVPLaqaxRbz4Remvlf6acIeJ@llama.rmq.cloudamqp.com/xxypubma', function (err, conn) {
+amqp.connect('amqp://localhost:5672', function (err, conn) {
+// amqp.connect('amqp://xxypubma:Wn-dt1JagVPLaqaxRbz4Remvlf6acIeJ@llama.rmq.cloudamqp.com/xxypubma', function (err, conn) {
 
     conn.createChannel(function (err, ch) {
         var ex = 'pub_sub_meetup28'
@@ -14,13 +14,9 @@ amqp.connect('amqp://xxypubma:Wn-dt1JagVPLaqaxRbz4Remvlf6acIeJ@llama.rmq.cloudam
             ch.bindQueue(q.queue, ex, '')
 
             ch.consume(q.queue, async (msg) => {
-                // console.log(msg.content.toJSON())
-                // console.log(" [x] %s", msg.content.toString())
+                
                 const msgFn = JSON.parse(msg.content)[0]
                 console.log(msgFn)
-                // console.log(msgFn)
-                // console.log(JSON.parse(msg.content))
-                // console.log(msg)
 
                 const user = await User.create(msgFn)
                 console.log(user)
