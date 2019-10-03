@@ -17,6 +17,7 @@ amqp.connect('amqp://localhost:5672', function (err, conn) {
                 // console.log(msg.content.toJSON())
                 // console.log(" [x] %s", msg.content.toString())
                 const msgFn = JSON.parse(msg.content)[0]
+                console.log(msgFn)
                 // console.log(msgFn)
                 // console.log(JSON.parse(msg.content))
                 // console.log(msg)
